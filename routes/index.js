@@ -269,13 +269,14 @@ app.get("/upload", IsLoggedIn, (req, res) => {
 });
 // upload
 app.post("/upload", IsLoggedIn, upload.single("file"), async (req, res) => {
-  let user = await userModel.findOne({ email: req.user.email });
-  console.log(user);
-  if (!user) {
-    res.send("error");
-  }
-  const { title, description, type } = req.body;
+  
   try {
+    let user = await userModel.findOne({ email: req.user.email });
+    console.log(user);
+    if (!user) {
+      res.send("error");
+    }
+    const { title, description, type } = req.body;
     const file = req.file;
     const upload = await UploadModel.create({
       Title: title,
