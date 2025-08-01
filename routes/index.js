@@ -286,7 +286,7 @@ app.post("/upload", IsLoggedIn, upload.single("file"), async (req, res) => {
     });
     user.uploads.push(upload._id);
     await user.save();
-    res.redirect("/dashboard/user");
+    res.render("success")
   } catch (err) {
     res.send(err);
   }
