@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Error Popup with Auto Close</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: bgFadeIn 1.5s ease-in-out;
+    }
+
+    .error-popup {
+      background-color: #ffe6e6;
+      color: #b30000;
+      border: 2px solid #ff4d4d;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      position: relative;
+      max-width: 400px;
+      width: 90%;
+      animation: popupIn 0.7s ease-out;
+    }
+
+    .error-popup h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .error-popup p {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 1.4rem;
+      color: #b30000;
+      cursor: pointer;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ff1a1a;
+      transform: rotate(90deg) scale(1.2);
+      animation: bounce 0.4s;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+    }
+
+    @keyframes popupIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes bgFadeIn {
+      from {
+        background-color: #ffffff;
+      }
+      to {
+        background-color: #e3f2fd;
+      }
+    }
+
+    @keyframes bounce {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-4px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-popup" id="errorPopup">
+    <span class="close-btn">&times;</span>
+    <h2><span class="icon">❌</span> Error Occurred</h2>
+    <p>Something went wrong while submitting your form. Please try again later.</p>
+  </div>
+
+  <script>
+    // Auto close after 5 seconds
+    setTimeout(() => {
+      closePopup();
+    }, 4000);
+
+    function closePopup() {
+      const popup = document.getElementById("errorPopup");
+      if (popup) {
+        popup.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        popup.style.opacity = "0";
+        popup.style.transform = "translateY(-20px)";
+        setTimeout(() => {
+          popup.style.display = "none";
+          window.location.href="/"
+        }, 500);
+      }
+    }
+  </script>
+
+</body>
+</html>

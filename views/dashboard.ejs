@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="/stylesheets/dsahboard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <% if(PasswordError){ %>
+    <div class="flash hidden">
+      <p><%= PasswordError %></p>
+    </div>
+    <% } %>
+
+    <div id="parent-container">
+      <button id="btn">menu</button>
+      <div class="dashboard">
+        <aside class="sidebar">
+          <h2>StudentHub</h2>
+          <img src="<%= user.picture %>" alt="user image" />
+          <h3 style="text-align: center;"><%= user.email %></h3>
+          <ul id="nav">
+            <li class="active" data-section="resources">
+              <a href="/resource">📁 Resources</a>
+            </li>
+            <li data-section="uploads"><a href="#uploads">⬆️ My Uploads</a></li>
+            <li data-section="saved"><a href="#">⭐ Saved</a></li>
+            <li data-section="settings"><a href="#">⚙️ Settings</a></li>
+            <li><a href="/logout">🚪 Logout</a></li>
+          </ul>
+        </aside>
+        <main class="main-content">
+          <div class="user-info">
+            <h1>Welcome, <%= user.name %> 👋</h1>
+            <p>Your resource sharing stats are shown below</p>
+          </div>
+
+          <!-- Section: Resources -->
+          <div id="resources" class="section active">
+            <div class="cards">
+              <div class="card" id="card1">
+                <h3>My Uploads</h3>
+                <p>Total contributions: <%= user.uploads.length %></p>
+              </div>
+              <div class="card" id="card2">
+                <h3>Downloads</h3>
+                <p>120 Times</p>
+              </div>
+              <div class="card" id="card3">
+                <h3>Saved Resources</h3>
+                <p><%= user.savedResources.length %></p>
+              </div>
+            </div>
+            <div></div>
+          </div>
+
+          <!-- Section: Uploads -->
+          <div id="uploads" class="section">
+            <h1>Upload a Resource</h1>
+            <div id="upload">
+              <form
+                id="uploadForm"
+                method="post"
+                action="/upload"
+                enctype="multipart/form-data"
+              >
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Enter a title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    placeholder="Enter a description (optional)"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="type">Resource Type</label>
+                  <select id="type" name="type" required>
+                    <option value="">Select type</option>
+                    <option value="notes">Notes</option>
+                    <option value="lecture">Lecture</option>
+                    <option value="assignment">Assignment</option>
+                    <option value="exam">Exam</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="file">Upload File</label>
+                  <input type="file" id="file" name="file" required />
+                </div>
+
+                <button type="submit">Upload Resource</button>
+              </form>
+              <div id="contri">
+                <h3>your Contribution</h3>
+                <div class="table-container">
+                  <h2>My Uploaded Resources</h2>
+                  <table class="resource-table">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% if (user.uploads.length > 0) { %> <%
+                      user.uploads.forEach(function(upload) { %>
+                      <tr>
+                        <td><%= upload.Title %></td>
+                        <td><%= upload.Resource_type %></td>
+                        <td><a href="/delete/<%= upload._id %>">Delete</a></td>
+                      </tr>
+                      <% }); %> <% } else { %>
+                      <tr>
+                        <td colspan="4">No uploads found</td>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Saved -->
+          <div id="saved" class="section">
+            <h1>Saved Resources</h1>
+            <table class="resource-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Type</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (user.savedResources.length > 0) { %> <%
+                user.savedResources.forEach(function(resource) { %>
+                <tr>
+                  <td><%= resource.Title %></td>
+                  <td><%= resource.Resource_type %></td>
+                </tr>
+                <% }); %> <% } else { %>
+                <tr>
+                  <td colspan="4">No uploads found</td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+            <p></p>
+          </div>
+
+          <!-- Section: Settings -->
+          <div id="settings" class="section">
+            <form action="/update/details" method="post" id="Password-form">
+              <div id="form-div">
+                <input
+                  type="text"
+                  placeholder="Enter Email"
+                  value="<%= user.Email %>"
+                  name="email"
+                />
+                <input
+                  type="text"
+                  placeholder="Enter Old Password"
+                  name="oldPassword"
+                />
+              </div>
+              <div id="form-div">
+                <input
+                  type="text"
+                  placeholder="Enter new Password"
+                  name="newPassword"
+                  id="newPassword"
+                />
+                <input
+                  type="text"
+                  value="<%= user.Name %>"
+                  name="newName"
+                /><br />
+              </div>
+              <input type="submit" />
+            </form>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const ulItems = document.querySelectorAll("#nav li");
+      const sections = document.querySelectorAll(".section");
+
+      ulItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          ulItems.forEach((i) => i.classList.remove("active"));
+          item.classList.add("active");
+
+          const target = item.getAttribute("data-section");
+          sections.forEach((section) => section.classList.remove("active"));
+          const activeSection = document.getElementById(target);
+          if (activeSection) activeSection.classList.add("active");
+        });
+      });
+      const sidebar = document.querySelector(".sidebar");
+      const btn = document.getElementById("btn");
+      let display = 0;
+      // btn.addEventListener('click',()=>{
+      //   if(display == 0){
+      //     sidebar.style.display = "block"
+      //     display = 1
+      //   }
+      //   else{
+      //     sidebar.style.display = "none";
+      //     display = 0;
+      //   }
+      // })
+      btn.addEventListener("click", () => {
+        console.log("success");
+
+        if (display == 0) {
+          sidebar.classList.add("active");
+          display = 1;
+        } else {
+          sidebar.classList.remove("active");
+          display = 0;
+        }
+      });
+      const flash = document.querySelector(".flash");
+      console.log(flash);
+      flash.classList.remove("hidden");
+      if (flash) {
+        setTimeout(() => {
+          flash.style.display = "none";
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

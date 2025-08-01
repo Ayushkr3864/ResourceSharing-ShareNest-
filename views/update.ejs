@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration Form</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="/stylesheets/register2.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h2>UPDATE PASSWORD</h2>
+    </div>
+    <form id="form" action="/update/password" method="post">
+
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email"  name="email" />
+       <% if(emailError){ %>
+            <small id="emailError"><%= emailError %></small>
+       <% } %>
+        
+      </div>
+      <div class="form-control">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password" autocomplete="off" name="password" />
+      </div>
+      <input type="submit" value="SUBMIT" id="btn"/>
+    </form>
+  </div>
+  <script>
+    const emailError = document.getElementById("emailError")
+    console.log(emailError);
+    
+    if(emailError){
+      setTimeout(()=>{
+        emailError.style.display = "none"
+      },4000)
+    }
+  </script>
+</body>
+</html>

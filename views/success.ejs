@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Success</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #9bbac4, #6fabcd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    .success-box {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      animation: slideUp 1s ease-out;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .checkmark-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      background-color: #007BFF;
+      border-radius: 50%;
+      position: relative;
+      animation: popIn 0.6s ease-out forwards;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tick {
+      color: white;
+      font-size: 2.5rem;
+      transform: scale(0);
+      animation: tickAppear 0.4s 0.5s ease-out forwards;
+    }
+
+    .success-box h1 {
+      color: #007BFF;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .success-box p {
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        background-color: #000;
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes tickAppear {
+      to {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="success-box">
+      <div class="checkmark-wrapper">
+        <div class="circle">
+          <div class="tick">✔</div>
+        </div>
+      </div>
+      <h1>Success!</h1>
+      <p>Your operation was completed successfully.</p>
+    </div>
+  </div>
+
+  <script>
+    const success = document.querySelector(".success-container");
+
+    setTimeout(() => {
+      successMessage();
+    }, 4000);
+
+    function successMessage() {
+      if (!success) return;
+      success.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+      success.style.transform = "translateY(-20px)";
+      success.style.opacity = "0";
+      success.style.pointerEvents = "none";
+
+      setTimeout(() => {
+        success.style.display = "none";
+        window.location.href = "/"; // redirect
+      }, 600);
+    }
+  </script>
+</body>
+</html>

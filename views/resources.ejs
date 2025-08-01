@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resource Table</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll(".preview-link");
+      const previewContainer = document.getElementById("pdfPreviewContainer");
+      const previewFrame = document.getElementById("pdfPreview");
+      const downloads = 0;
+  
+      links.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          
+          const file = link.getAttribute("data-file");
+          previewFrame.src = file;
+          previewContainer.style.display = "block";
+        });
+      });
+    });
+  </script>
+  
+  
+  <style>
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f5f7fa;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4a148c;
+      margin-bottom: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    thead {
+      background-color: #8e24aa;
+      color: white;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    tr:hover {
+      background-color: #f3e5f5;
+    }
+
+    td a {
+      color: #8e24aa;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+        border: solid #8e24aa 1px;
+      }
+
+      thead {
+        display: none;
+      }
+
+      td {
+        padding: 0.75rem;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        border: solid beige 2px;
+      }
+
+      td::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45%;
+        padding-left: 1rem;
+        font-weight: bold;
+        color: #333;
+      }
+
+      td:nth-of-type(1)::before { content: "Title"; }
+      td:nth-of-type(2)::before { content: "Description"; }
+      td:nth-of-type(3)::before { content: "Resource Type"; }
+      td:nth-of-type(4)::before { content: "File"; }
+    }
+  </style>
+</head>
+<form action="/books" method="get">
+  <input type="text" name="Title" id="title" placeholder="Search by title">
+  <input type="submit" value="Search">
+</form>
+
+<h2>Uploaded Resources</h2>
+
+<% if (searchPerformed) { %>
+  <% if (Results.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Resource Type</th>
+          <th>Save</th>
+          <th>File</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Results.forEach(function(resource){ %>
+          <tr>
+            <td><%= resource.Title %></td>
+            <td><%= resource.Description %></td>
+            <td><%= resource.Resource_type %></td>
+            <td><a href="/save-book/<%= resource._id %>">save</a></td>
+            <td>
+              <% if (resource.file) { %>
+                <a href="#" class="preview-link" data-file="<%= resource.file %>">Preview</a>
+              <% } else { %>
+                <em>No file</em>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No resources found for your search.</p>
+  <% } %>
+<% } else { %>
+  <% if (resources.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Resource Type</th>
+          <th>Save</th>
+          <th>File</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% resources.forEach(function(resource){ %>
+          <tr>
+            <td><%= resource.Title %></td>
+            <td><%= resource.Description %></td>
+            <td><%= resource.Resource_type %></td>
+            <td><a href="/save-book/<%= resource._id %>">save</a></td>
+            <td>
+              <% if (resource.file) { %>
+                <a href="#" class="preview-link" data-file="<%= resource.file %>">
+                  Preview
+                </a>
+              <% } else { %>
+                <em>No file</em>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No resources available. Please upload some or search.</p>
+  <% } %>
+<% } %>
+
+    <div id="pdfPreviewContainer" style="margin-top: 2rem; display: none;">
+      <h3>PDF Preview:</h3>
+      <iframe id="pdfPreview" width="100%" height="600px" style="border: 1px solid #ccc;"></iframe>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>

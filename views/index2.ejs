@@ -1,0 +1,107 @@
+var express = require('express');
+var router = express.Router();
+const userModel = require("../models/User")
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const cookie = require('cookie')
+router.get('/', function(req, res, next) {
+  res.render('index');
+});
+router.get('/login',(req,res)=>{
+  res.render('login');
+});
+router.post('/login', async(req,res)=>{
+  // const userName = await userModel.findOne({username:username})
+  const username = req.body.username;
+const userName = await userModel.findOne({ username: username });
+
+  console.log(userName);
+  
+  if(!userName){
+    res.send("error")
+  }
+  else{
+    bcrypt.compare(req.body.password,userName.password,function(err,result){
+      if(result == true){
+        const userToken = jwt.sign({username:userName.username},"mishthi");
+        res.cookie("token",userToken);
+         req.session.user = userName;
+        console.log((userToken));
+        res.redirect("/dashboard");
+      }
+      else{
+        res.send("error")
+      }
+    })
+  }
+})
+router.get('/register',(req,res)=> {
+  res.render('register');
+});
+router.post('/register', async (req,res)=> {
+  const {username,password,email}  = req.body;
+  const existingUser = await userModel.findOne({email});
+    if(existingUser) res.send("email already registeted use unique one");
+    else 
+  
+  bcrypt.genSalt(10,function(err,salt){
+    bcrypt.hash(req.body.password,salt,async function(err,hash){
+     const user = await userModel.create({
+     username: username,
+     email: email,
+     password: hash,
+  })
+  res.redirect("/login");
+  console.log(user);
+  })
+})
+})
+router.get('/dashboard', (req, res) => {
+  
+  if (!req.session.user) {
+    return res.redirect('/login');  
+  } 
+  res.render('dashboard', { user: req.session.user });
+});
+router.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
+});
+
+<!-- router.post('/register', async (req, res) => {
+  const { username, email, password, role } = req.body;
+
+  const existingUser = await userModel.findOne({ email });
+  if (existingUser) return res.send("Email already exists.");
+
+  const hash = await bcrypt.hash(password, 10);
+
+  const user = await userModel.create({
+    username,
+    email,
+    password: hash,
+    role
+  });
+
+  res.redirect('/login');
+});
+
+router.get('/dashboard', (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
+
+  const user = req.session.user;
+
+  if (user.role === 'admin') {
+    res.render('admin-dashboard', { user });
+  } else if (user.role === 'professor') {
+    res.render('professor-dashboard', { user });
+  } else {
+    res.render('student-dashboard', { user });
+  }
+});
+
+
+router.get('/register', (req, res) => {
+  res.render("register"); -->
+
+  module.exports = router;

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Resource Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+</head>
+<style>
+    /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+body {
+  background: linear-gradient(135deg, #6c5ce7, #00cec9);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* animation: fadeInBody 2s ease-in-out; */
+}
+
+.container {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  filter: drop-shadow(5px 5px 10px teal );
+  /* width: 60vmax; */
+  justify-content: space-between;
+  align-items: center;
+  /* animation: fadeInBody 2s  ease-in-out; */
+}
+@keyframes fadeInBody {
+  0% {
+    transform: translateY(-300px);
+  }
+
+  60% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-20px);
+  }
+
+  90% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.registration-form{
+  width:30vmax;
+}
+@media(max-width:768px){
+.registration-form{
+  width: 45vmax;
+  padding: 20px;
+}
+}
+
+.registration-form h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2d3436;
+}
+
+.registration-form p {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #636e72;
+}
+
+.registration-form input {
+  
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  
+}
+ 
+
+.registration-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #6c5ce7;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  
+
+}
+
+.registration-form button:hover {
+  background-color: #4834d4;
+}
+.registration-form select {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #2d3436;
+  transition: 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='14' height='10' viewBox='0 0 14 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23636e72' d='M7 10L0 0h14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+}
+.parent div{
+  padding-left: 30px;
+  margin: -20px 50px;
+  color: red;
+ 
+}
+.parent p{
+  color: #d00a1e;
+  margin-left: -15vmax;
+}
+.icon1{
+  display: none;
+  color: red;
+}
+.icon2{
+  color: green;
+  display: none;
+}
+.error-div{
+  text-align: center;
+}.google-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.google-btn i {
+  margin-right: 8px;
+  color: #db4437;
+}
+
+.google-btn:hover {
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+
+#secret{
+  display:none
+}
+
+
+
+</style>
+<body>
+  <div class="container">
+    
+    <div id="formDiv">
+      <form class="registration-form" method="post" action="/register" enctype="multipart/form-data">
+        <h2>Register</h2>
+        <p>Join the student sharing platform</p>
+        <div class="form-group"></div>
+        <div  class="parent">
+        <input type="text" placeholder="Full Name" name="Name" id="name" />
+        <i class="fa-solid fa-circle-exclamation icon1 "></i>
+        <i class="fa-solid fa-circle-check icon2" ></i>
+        <div class="error-div"><p id="error-message"></p></div>
+        </div>
+        <div  class="parent">
+          <input type="email" placeholder="Email" id="email" name="Email" />
+          <i class="fa-solid fa-circle-exclamation icon1 "></i>
+          <i class="fa-solid fa-circle-check icon2" ></i>
+          <div class="error-div"><p id="error-message"></p></div>
+          </p>
+        </div>
+        <input type="text" placeholder="Username" name="Username"/>
+        <div  class="parent">
+          <input type="password" placeholder="Password" name="Password" id="password" />
+          <i class="fa-solid fa-circle-exclamation icon1 "></i>
+          <i class="fa-solid fa-circle-check icon2" ></i>
+          <div class="error-div"><p id="error-message"></p></div>
+         
+        </div>
+        
+        <input type="file" name="picture">
+        <select  name="Department">
+          <option value="">Select Department</option>
+          <option value="Computer Science">Computer Science</option>
+          <option value="Engineering">Engineering</option>
+          <option value="Medical">Medical</option>
+          <option value="Business">Business</option>
+        </select>
+        
+        <button type="submit" id="submitBtn">Sign Up</button>
+        <!-- <div style="text-align: center; margin-top: 15px;">
+  <a href="/auth/google" class="google-btn">
+    <i class="fab fa-google"></i> Continue with Google
+  </a>
+</div> -->
+
+      </form>
+      <div>
+        <% errors.forEach((error)=>{ %>
+          <p><%= error %></p>
+        <% }) %>
+      </div>
+      <div>
+        <%  usernameExist.forEach((Username)=>{ %>
+          <p><%= Username %></p>
+       <% }) %>
+      </div>
+    </div>
+  </div>
+  <script>
+    const form = document.querySelector('.registration-form')
+    const name = document.getElementById("name");
+    const email = document.querySelector("#email")
+    const password = document.querySelector("#password")
+    const roles = document.querySelectorAll('input[type="radio"]')
+    const secret = document.querySelector("#secret");
+    console.log(secret);
+    
+    var valid = true;
+    
+    form.addEventListener('submit',(e)=>{
+       e.preventDefault();
+      valid = true;
+      validate();
+      if(valid){
+        form.submit();
+      }
+      console.log(valid);
+    });
+    function validate(){
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&]).{8,}$/;
+
+      const nameval = name.value.trim();
+      const startsWith = /^[0-9];/ 
+      if(nameval.length<=3){
+        console.log(nameval);
+        setError(name,"Name is too short")
+      }
+      else if(/^[0-9]/.test(nameval)){
+        setError(name,"name cannot start with number")
+      }
+      else{
+        success(name);
+      }
+      const emailval = email.value.trim();
+      if(emailval.indexOf("@")<1){
+        setError(email,"Not a valid email address")
+      }
+      else if(emailval.lastIndexOf(".") <= emailval.indexOf("@")){
+        setError(email,"name cannot start with number")
+      }
+      else{
+        success(email);
+      }
+      const passwordval = password.value.trim();
+      const passwordvalidate = regex.test(passwordval)
+      if(!passwordvalidate){
+        setError(password,"Password should contain 1 special character")
+      }
+      else{
+        success(password);
+      }
+      
+    }
+    
+    function setError(value,error){
+      const parent = value.parentElement;
+      const icon = parent.querySelector('.icon1')
+      const err = parent.querySelector('#error-message')
+      icon.style.display = "inline"
+      err.innerHTML = error
+      valid = false;
+    }
+    function success(value){
+      const parent = value.parentElement;
+      const icon = parent.querySelector('.icon2')
+      icon.style.display = "inline"
+    }
+   
+  </script>
+</body>
+</html>

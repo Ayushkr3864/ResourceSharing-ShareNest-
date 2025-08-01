@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Sharing</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+
+<body>
+  <div id="btn-div">
+    <img style="border-radius: 50%;" src="/images/logo.jpg" alt="image" height="60px">
+    <button id="btn1">Menu</button>
+  </div>
+  <nav id="nav" class="nav">
+    <div class="logo"> <img style="border-radius: 50%;" src="/images/logo.jpg" alt="image" height="60px"></div>
+    <div>
+      <ul>
+      <a href=""><li><b>home</b></li></a>
+      <a href="#footer"><li><b>about us</b></li></a>
+      <a href="#services"><li><b>services</b></li></a>
+      <a href="/login"><li><b>Login</b></li></a>
+      <a href="/register"><li><b>Register</b></li></a>
+    </ul>
+    </div>
+  </nav>
+   <section id="student-resource">
+    <div>
+      <h1> Welcome to ShareNest</h1>
+      <p>A platform to share notes,books,and join virtual study groups</p> <br> <br>
+    </div>
+  </section>
+  <section id="mis-sec">
+    <h1>Our Commitment</h1>
+    <p>To provide a unified digital space where students, educators, and academic staff can seamlessly share, access, and collaborate on educational resources—enhancing learning, productivity, and academic engagement."</p>
+    <p></p>
+    
+  </section>
+    <div class="section-title"><h2>Our Mission</h2></div>
+  <div class="card">
+    <h2>🌱 Empowering Through Sharing</h2>
+    <p>
+      Our mission is to build a reliable and inclusive platform where individuals, educators, and organizations can easily share and access educational and practical resources. We aim to foster a culture of knowledge exchange that fuels collaboration, growth, and opportunity for all.
+    </p>
+  </div>
+
+  <div class="section-title"><h2>Our Vision</h2></div>
+
+  <div class="card">
+    <h2>🚀 Shaping a Smarter Tomorrow</h2>
+    <p>
+      Our vision is to become the world’s most trusted hub for digital resource sharing—connecting communities across boundaries, ensuring equitable access to knowledge, and inspiring innovation through open collaboration and digital empowerment.
+    </p>
+  </div>
+  <div><h1 style="margin-bottom: 30px; text-align: center; color: #029eff;">What You Can Do</h1></div>
+  <section id="services">
+    
+    <a href="/upload">
+      <div class="upload" id="upload">
+        <b><i class="fa-solid fa-arrow-up-from-bracket"></i></b>
+        <h1>Upload & Share</h1>
+        <p>Upload your notes and books to share with others</p>
+      </div>
+    </a>
+    <a href="/chat">
+      <div class="upload" id="study">
+        <b><i class="fa-solid fa-users-rectangle"></i></b>
+        <h1>Study Groups</h1>
+        <p>Join virtual study groups and collaborate online</p>
+      </div>
+    </a>
+    <a href="/resource">
+      <div class="upload" id="search">
+        <b><i class="fa-solid fa-magnifying-glass"></i></b>
+        <h1>Smart Search</h1>
+        <p>find resources quickly with tag-based search feature</p>
+      </div>
+    </a>
+  </section>
+ <section id="student-resource" class="student-resource">
+    <div><img src="/images/img1-Photoroom (1).png" height="250px" width="300px" alt=""></div>
+    <div id="connect">
+      <h1 style="color: #00428e;">Connect with Study Groups</h1>
+      <p style="color: #00428e;">Chat and study with peers in virtual groups</p>
+    </div>
+  </section>
+  <section class="cta">
+  <div class="cta-content">
+    <h2>Join <span>ShareNest</span> today</h2>
+    <p>Start collaborating, sharing, and growing academically with your peers and professors.</p>
+    <a href="/register" class="btn">Create an Account</a>
+  </div>
+</section>
+
+  <div id="btn">
+    <a href="/dashboard/user"><button class="dashboard-button" >Go to Dashboard</button></a>
+  </div>
+  <footer style="text-align: center;">
+    <footer class="footer" id="footer">
+  <div class="footer-container">
+    <!-- Contact Info -->
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-envelope"></i> ak05078189@gmail.com</p>
+      <p><i class="fas fa-phone"></i> +91 97739 09217</p>
+      <p><i class="fas fa-map-marker-alt"></i> City Campus, New Delhi, India</p>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-section">
+      <h3>Subscribe</h3>
+      <p>Join our newsletter to stay updated!</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Your email" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <!-- Location or Social -->
+    <div class="footer-section" id="footer-section">
+      <h3>Quick Links</h3>
+      <p><a href="/about">About Us</a></p>
+      <p><a href="">Contact</a></p>
+      <p><a href="/faq">FAQ</a></p>
+    </div>
+    <!-- Social Media -->
+<div class="footer-section">
+  <h3>Follow Us</h3>
+  <div class="social-icons">
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/ayushkr3864/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/in/ayush-kumar-ray-4247972b6/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
+
+  </div>
+  <div class="footer-bottom">
+   <p>© <%= new Date().getFullYear() %> ShareNest. All rights reserved.
+       Designed By Ayush ❤️</p>
+  </div>
+</footer>
+
+    
+  
+ 
+  <script>
+    document.addEventListener("DOMContentLoaded",()=>{
+     const Menu = document.getElementById("btn1");
+     var display = 0
+      const nav = document.querySelector(".nav");
+      const btn1= document.getElementById("btn1");
+      
+      Menu.addEventListener('click',()=>{
+        if(display == 0){
+          nav.style.display = "flex";
+          nav.classList.add("active");
+          btn1.innerHTML = '<i class="fa-solid fa-xmark"></i>'
+          display = 1
+        }else{
+          nav.style.marginleft="-20rem"
+          nav.classList.remove("active");
+          btn1.innerText = "Menu"
+          display = 0;
+        }
+    });
+    })
+  </script>
+</body>
+</html>

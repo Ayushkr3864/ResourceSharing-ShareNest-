@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: url("https://img.freepik.com/free-photo/fitness-concept-with-dumbbells-frame_23-2148531434.jpg")
+    no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#container {
+  background: #fff;
+  width: 400px;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+#header {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  padding: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin: -40px -40px 20px -40px;
+  text-align: center;
+}
+
+#header h2 {
+  color: #fff;
+  margin: 0;
+}
+
+.form-control {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.form-control label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.form-control.success input {
+  border-color: #2ecc71;
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+.form-control i {
+  position: absolute;
+  right: 10px;
+  top: 42px;
+  visibility: hidden;
+}
+
+.form-control.success i.fa-check-circle {
+  color: #2ecc71;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: #e74c3c;
+  visibility: visible;
+}
+
+.form-control small {
+  color: #e74c3c;
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  font-size: 12px;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+#btn {
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#btn:hover {
+  background: linear-gradient(to left, #00c6ff, #0072ff);
+}

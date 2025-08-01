@@ -1,0 +1,33 @@
+{
+  "name": "resource-sharing",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.826.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^1.41.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "cookies": "^0.9.1",
+    "debug": "~2.6.9",
+    "dotenv": "^16.6.1",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.18.1",
+    "google-auth-library": "^10.1.0",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "moongose": "^1.0.0",
+    "morgan": "~1.9.1",
+    "multer": "^2.0.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "punycode": "^2.3.1",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
