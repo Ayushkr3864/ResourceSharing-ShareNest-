@@ -269,7 +269,7 @@ app.get("/upload", IsLoggedIn, (req, res) => {
 });
 // upload
 app.post("/upload", IsLoggedIn, upload.single("file"), async (req, res) => {
-  let user = await userModel.findOne({ Email: req.user.email });
+  let user = await userModel.findOne({ email: req.user.email });
   console.log(user);
   if (!user) {
     res.send("error");
@@ -326,7 +326,7 @@ app.post("/update/password",async (req, res) => {
     const { email, password } = req.body;
     console.log(email);
 
-    const updatedUser = await userModel.findOne({ Email: email });
+    const updatedUser = await userModel.findOne({ email: email });
     if (!updatedUser) {
       req.flash("emailError", "email not found");
       res.redirect("/update/password");
@@ -351,7 +351,7 @@ app.post("/update/details", async (req, res) => {
     const newPassword = req.body.newPassword
     console.log(oldPassword);
     console.log(email);
-    const Updateduser = await userModel.findOne({ Email: email })
+    const Updateduser = await userModel.findOne({ email: email })
     if (!Updateduser) {
       res.send("error")
     }
@@ -378,7 +378,5 @@ app.post("/update/details", async (req, res) => {
   catch {
   }
 })
-app.get("/validate", (req, res) => {
-  res.render("validate")
-});
+
 module.exports = app;
