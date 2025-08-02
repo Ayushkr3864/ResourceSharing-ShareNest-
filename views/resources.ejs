@@ -4,31 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resource Table</title>
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const links = document.querySelectorAll(".preview-link");
-    const previewContainer = document.getElementById("pdfPreviewContainer");
-    const previewFrame = document.getElementById("pdfPreview");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll(".preview-link");
+      const previewContainer = document.getElementById("pdfPreviewContainer");
+      const previewFrame = document.getElementById("pdfPreview");
 
-    links.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const file = link.getAttribute("data-file");
-        const ext = file.split('.').pop().toLowerCase();
-
-        if (ext === "pdf") {
+  
+      links.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          
+          const file = link.getAttribute("data-file");
           previewFrame.src = file;
-        } else {
-          // For Word, PPT, etc.
-          previewFrame.src = `https://docs.google.com/gview?url=${window.location.origin + file}&embedded=true`;
-        }
-
-        previewContainer.style.display = "block";
+          previewContainer.style.display = "block";
+        });
       });
     });
-  });
-</script>
-
+  </script>
   
   
   <style>
@@ -176,10 +169,9 @@
             <td><a href="/save-book/<%= resource._id %>">save</a></td>
             <td>
               <% if (resource.file) { %>
-                <a href="<%= resource.file %>" class="preview-link" download="" data-file="<%= resource.file %>">
+                <a href="#" class="preview-link" data-file="<%= resource.file %>">
                   Preview
                 </a>
-                <a href="<%= resource.file %>" download="">download</a>
               <% } else { %>
                 <em>No file</em>
               <% } %>

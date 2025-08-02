@@ -33,9 +33,11 @@ cloudinary.config({
 const Storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder:"uploads"
-  }
-})
+    folder: "uploads",
+    resource_type: "raw",
+    format: async (req, file) => "pdf",
+  },
+});
 app.use(
   session({
     secret: jwtSecret,
