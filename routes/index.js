@@ -274,7 +274,7 @@ app.post("/upload", IsLoggedIn, upload.single("file"), async (req, res) => {
     let user = await userModel.findOne({ email: req.user.email });
     console.log(user);
     if (!user) {
-      res.send("error");
+     return res.send("error");
     }
     const { title, description, type } = req.body;
     const file = req.file;

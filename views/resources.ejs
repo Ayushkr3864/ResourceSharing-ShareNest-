@@ -4,24 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Resource Table</title>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const links = document.querySelectorAll(".preview-link");
-      const previewContainer = document.getElementById("pdfPreviewContainer");
-      const previewFrame = document.getElementById("pdfPreview");
-      const downloads = 0;
-  
-      links.forEach(link => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          
-          const file = link.getAttribute("data-file");
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".preview-link");
+    const previewContainer = document.getElementById("pdfPreviewContainer");
+    const previewFrame = document.getElementById("pdfPreview");
+
+    links.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const file = link.getAttribute("data-file");
+        const ext = file.split('.').pop().toLowerCase();
+
+        if (ext === "pdf") {
           previewFrame.src = file;
-          previewContainer.style.display = "block";
-        });
+        } else {
+          // For Word, PPT, etc.
+          previewFrame.src = `https://docs.google.com/gview?url=${window.location.origin + file}&embedded=true`;
+        }
+
+        previewContainer.style.display = "block";
       });
     });
-  </script>
+  });
+</script>
+
   
   
   <style>
