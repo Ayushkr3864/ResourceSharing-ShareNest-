@@ -176,9 +176,10 @@
             <td><a href="/save-book/<%= resource._id %>">save</a></td>
             <td>
               <% if (resource.file) { %>
-                <a href="#" class="preview-link" data-file="<%= resource.file %>">
+                <a href="<%= resource.file %>" class="preview-link" download="" data-file="<%= resource.file %>">
                   Preview
                 </a>
+                <a href="<%= resource.file %>" download="">download</a>
               <% } else { %>
                 <em>No file</em>
               <% } %>
