@@ -20,6 +20,7 @@
     "google-auth-library": "^10.1.0",
     "googleapis": "^154.1.0",
     "http-errors": "~1.6.3",
+    "js-file-download": "^0.4.12",
     "jsonwebtoken": "^9.0.2",
     "moongose": "^1.0.0",
     "morgan": "~1.9.1",

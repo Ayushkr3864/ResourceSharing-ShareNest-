@@ -38,6 +38,18 @@ const Storage = new CloudinaryStorage({
     format: async (req, file) => "pdf",
   },
 });
+// app.get("/download/:id", (req, res) => {
+//   const publicId = req.params.id;
+//   const fileName = publicId.split("/").pop();
+
+//   const downloadUrl = cloudinary.url(publicId, {
+//     flags: `attachment:${fileName}`, // 'downloaded_file' will be the name of the downloaded file
+//     resource_type: "raw",
+//   });
+
+//   // Redirect or initiate the download
+//   res.redirect(downloadUrl);
+// });
 app.use(
   session({
     secret: jwtSecret,
