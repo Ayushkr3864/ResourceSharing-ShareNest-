@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { required } = require('nodemon/lib/config');
 mongoose.set('strictQuery', false);
 
 const uploadSchema = mongoose.Schema({

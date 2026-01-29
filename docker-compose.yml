@@ -1,0 +1,36 @@
+
+version: '3.9'
+
+services:
+  database_service:
+    container_name: database
+    image: mongo:latest
+    volumes:
+      - mongo_data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - resource-sharing-network
+  
+  api:
+    container_name: api_service
+    build: .
+    image: ayushkr3864/sharenest:1.0
+    ports:
+      - 3000:3000
+    env_file:
+      - .env.docker
+    depends_on:
+      - database_service
+    networks:
+      - resource-sharing-network
+
+
+volumes:
+  mongo_data:
+
+networks:
+  resource-sharing-network:
+    driver: bridge
+
+    
