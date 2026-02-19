@@ -11,4 +11,4 @@ Disallow: /dashboard
 Disallow: /chat
 Disallow: /update
 
-Sitemap: https://sharenest.in/sitemap.xml
+Sitemap: https://resourcesharing-sharenest.onrender.com//sitemap.xml
