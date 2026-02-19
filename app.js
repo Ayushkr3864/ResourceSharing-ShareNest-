@@ -22,6 +22,14 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.get("/sitemap.xml", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "sitemap.xml"));
+});
+
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "robots.txt"));
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

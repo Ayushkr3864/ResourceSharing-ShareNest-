@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /resources
+Allow: /upload
+Allow: /bookSearch
+
+# Block private pages
+Disallow: /dashboard
+Disallow: /chat
+Disallow: /update
+
+Sitemap: https://sharenest.in/sitemap.xml
